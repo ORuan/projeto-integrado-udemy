@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ApiCreate from '../../../services'
 import { useHistory } from 'react-router'
 import NavbarComponent from '../../../Components/Navbar'
+import Toast from 'light-toast';
 
 const DeleteAccount = () => {
     const redirect = useHistory()
@@ -12,8 +13,10 @@ const DeleteAccount = () => {
     const send = (e) => {
         e.preventDefault()
         ApiCreate('DELETE', `users/${account_id}`,).then((res) => {
+            Toast.success('Sucesso', 1500, 'onClose');
             redirect('/')
         }).catch(error => {
+            Toast.fail('Houve um erro', 1500, ()=>{});
             //
         })
     }

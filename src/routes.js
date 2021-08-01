@@ -3,6 +3,7 @@ import CreateAccount from './Pages/AccountPages/Create'
 import EditAccount from './Pages/AccountPages/Edit';
 import ViewAccount from './Pages/AccountPages/View';
 import DeleteAccount from './Pages/AccountPages/Delete';
+import Login from './Pages/AccountPages/Login';
 
 
 import CreateClass from './Pages/ClassPages/Create'
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route component={CreateAccount} path="/conta/criar" exact />
         <Route component={EditAccount} path="/conta/editar" exact />
         <Route component={DeleteAccount} path="/conta/deletar" exact /> 
+        <Route component={Login} path="/conta/login" exact /> 
         <Route component={ViewAccount} path="/conta/visualizar" exact />
 
 

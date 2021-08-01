@@ -1,28 +1,56 @@
-import './index.css'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 
-const NavbarComponent = () => {
 
-    return (
-        <>
-            <div class="ui secondary menu ">
-                <a class="active item">
-                    <img src='https://image.flaticon.com/icons/png/512/3256/3256114.png'></img>
-                </a>
-                <a class="item">
-                    Aulas
-                </a>
-                <a class="item">
-                    Desenolvedores
-                </a>
-                <div class="right menu item">
-                    <div class="ui primary button">Logout</div>
-                    <div class="item menu">
-                        <div class="ui secondary button">Sign Up</div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+export default class NavbarComponent extends Component {
+    state = {}
+
+    handleItemClick = (e, { name }) => {
+        this.setState({ activeItem: name })
+
+    }
+
+    render() {
+        const { activeItem } = this.state
+
+        return (
+            <Menu stackable>
+                <Link to="/">
+                    <Menu.Item>
+                        <img src='https://icon-library.com/images/icon-logo-png/icon-logo-png-11.jpg' />
+                    </Menu.Item>
+                </Link>
+
+                <Menu.Item
+                    name='aulas'
+                    onClick={this.handleItemClick}
+                    active={activeItem === 'aulas'}>
+                    <Link to="/aula/todas">
+                        Aulas
+                    </Link>
+                </Menu.Item>
+
+                <Menu.Item
+                    name='profile'
+                    active={activeItem === 'profile'}
+                    onClick={this.handleItemClick}
+                >
+                    <Link to="/conta/visualizar">
+                        Perfil
+                    </Link>
+                </Menu.Item>
+
+                <Menu.Item
+                    name='login'
+                    active={activeItem === 'login'}
+                    onClick={this.handleItemClick}
+                >
+                     <Link to="/conta/login">
+                        Login
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        )
+    }
 }
-
-export default NavbarComponent

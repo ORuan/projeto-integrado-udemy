@@ -4,6 +4,8 @@ import { useState } from 'react'
 import ApiCreate from '../../../services'
 import { useHistory } from 'react-router'
 import NavbarComponent from '../../../Components/Navbar'
+import Toast from 'light-toast';
+
 
 const EditAccount = () => {
     const redirect = useHistory()
@@ -25,10 +27,12 @@ const EditAccount = () => {
     const send = async (e) => {
         e.preventDefault()
         await ApiCreate('PUT', 'users/', user).then((res) => {
+            Toast.success('Sucesso', 1500, 'onClose');
             //
             redirect('/')
 
         }).catch(error => {
+            Toast.fail('Houve um erro', 1500, () => { });
             //
         })
     }
@@ -68,18 +72,7 @@ const EditAccount = () => {
                                         <input type="text" name="email" value={user.email} onChange={(e) => { handleToChangeInput(e.target) }} placeholder="E-mail address" />
                                     </div>
                                 </div>
-                                <div class="field">
-                                    <div class="ui left icon input">
-                                        <i class="lock icon"></i>
-                                        <input type="password" name="password1" value={user.password1} onChange={(e) => { handleToChangeInput(e.target) }} placeholder="Password" />
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="ui left icon input">
-                                        <i class="lock icon"></i>
-                                        <input type="password" name="password2" value={user.password2} onChange={(e) => { handleToChangeInput(e.target) }} placeholder="Confirm Password" />
-                                    </div>
-                                </div>
+
                                 <div class="inline one field" style={{ textAlign: 'left' }}>
                                     <div class="ui checkbox">
                                         <input type="checkbox" tabindex="0" name="is_mentor" value={user.is_mentor} onChange={(e) => { handleToChangeInput(e.target) }} />
@@ -88,7 +81,8 @@ const EditAccount = () => {
                                 </div>
                                 <div class="ui fluid large teal submit button" onClick={(e) => { send(e) }} >Enviar</div>
                             </div>
-                            <div class="ui error message">
+                            <div class="ui message">
+                                Recuperar senha? <a href="#">Recuperar</a>
                             </div>
                         </section>
 
